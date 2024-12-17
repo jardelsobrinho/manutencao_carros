@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:manutencao_carros/config/routing/router.dart';
+import 'package:manutencao_carros/config/service_locator/service_locator.dart';
 
 void main() {
+  configureDependencies();
   runApp(const MainApp());
 }
 
@@ -9,13 +12,9 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp.router(
+      routerConfig: router,
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
-      ),
     );
   }
 }
