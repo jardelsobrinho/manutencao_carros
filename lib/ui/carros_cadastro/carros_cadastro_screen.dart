@@ -16,11 +16,11 @@ class CarrosCadastroScreen extends StatefulWidget {
 }
 
 class _CarrosCadastroScreenState extends State<CarrosCadastroScreen> {
-  final nomeController = TextEditingController();
-  final placaController = TextEditingController();
-  final kilometragemController = TextEditingController();
+  final TextEditingController nomeController = TextEditingController();
+  final TextEditingController placaController = TextEditingController();
+  final TextEditingController kilometragemController = TextEditingController();
 
-  _listen() {
+  void _listen() {
     if (widget.viewModel.gravar.isError) {
       context.showErro(mensagem: widget.viewModel.gravar.messageError);
     } else if (widget.viewModel.gravar.idCompleted) {

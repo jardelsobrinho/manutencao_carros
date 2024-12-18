@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 import 'package:manutencao_carros/config/commands/command.dart';
 import 'package:manutencao_carros/config/commands/result.dart';
+import 'package:manutencao_carros/data/repositories/carros/carro_repository.dart';
 
 @injectable
 class CarrosCadastroViewmodel extends ChangeNotifier {
+  final CarroRepository repository;
   late final CommandArgs<void, DadosCadastroCarro> gravar;
 
-  CarrosCadastroViewmodel() {
+  CarrosCadastroViewmodel({required this.repository}) {
     gravar = CommandArgs(_gravar);
   }
 

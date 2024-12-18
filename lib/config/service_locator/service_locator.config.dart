@@ -11,8 +11,10 @@
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
-import '../../ui/carros_cadastro/carros_cadastro_viewmodel.dart' as _i168;
-import '../../ui/carros_pesquisa/carros_pesquisa_viewmodel.dart' as _i893;
+import '../../data/repositories/carros/carro_repository.dart' as _i585;
+import '../../data/repositories/carros/carro_repository_impl.dart' as _i7;
+import '../../ui/carros_cadastro/carros_cadastro_viewmodel.dart' as _i446;
+import '../../ui/carros_pesquisa/carros_pesquisa_viewmodel.dart' as _i364;
 
 extension GetItInjectableX on _i174.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -25,10 +27,11 @@ extension GetItInjectableX on _i174.GetIt {
       environment,
       environmentFilter,
     );
-    gh.factory<_i893.CarrosPesquisaViewModel>(
-        () => _i893.CarrosPesquisaViewModel());
-    gh.factory<_i168.CarrosCadastroViewmodel>(
-        () => _i168.CarrosCadastroViewmodel());
+    gh.factory<_i364.CarrosPesquisaViewModel>(
+        () => _i364.CarrosPesquisaViewModel());
+    gh.factory<_i585.CarroRepository>(() => _i7.CarroRepositoryImpl());
+    gh.factory<_i446.CarrosCadastroViewmodel>(() =>
+        _i446.CarrosCadastroViewmodel(repository: gh<_i585.CarroRepository>()));
     return this;
   }
 }
