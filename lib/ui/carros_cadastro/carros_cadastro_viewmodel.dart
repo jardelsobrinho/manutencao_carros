@@ -17,6 +17,12 @@ class CarrosCadastroViewmodel extends ChangeNotifier {
     await Future.delayed(Duration(seconds: 3));
     return Result.ok(null);
   }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+  }
 }
 
 class DadosCadastroCarro {
