@@ -32,8 +32,6 @@ extension GetItInjectableX on _i174.GetIt {
       environmentFilter,
     );
     final registerModule = _$RegisterModule();
-    gh.factory<_i364.CarrosPesquisaViewModel>(
-        () => _i364.CarrosPesquisaViewModel());
     gh.singleton<_i454.SupabaseClient>(() => registerModule.supabaseClient);
     gh.factory<_i850.CarroServices>(() => _i881.CarroSupabaseServices(
         supabaseClient: gh<_i454.SupabaseClient>()));
@@ -41,6 +39,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i7.CarroRepositoryImpl(service: gh<_i850.CarroServices>()));
     gh.factory<_i446.CarrosCadastroViewmodel>(() =>
         _i446.CarrosCadastroViewmodel(repository: gh<_i585.CarroRepository>()));
+    gh.factory<_i364.CarrosPesquisaViewModel>(() =>
+        _i364.CarrosPesquisaViewModel(repository: gh<_i585.CarroRepository>()));
     return this;
   }
 }

@@ -10,7 +10,7 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: Routes.home,
       builder: (BuildContext context, GoRouterState state) {
-        return CarrosCadastroScreen(
+        return CarrosPesquisaScreen(
           viewModel: getIt(),
         );
       },
