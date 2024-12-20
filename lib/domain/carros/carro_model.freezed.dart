@@ -22,6 +22,8 @@ CarroModel _$CarroModelFromJson(Map<String, dynamic> json) {
 mixin _$CarroModel {
   String get id => throw _privateConstructorUsedError;
   String get nome => throw _privateConstructorUsedError;
+  String get placa => throw _privateConstructorUsedError;
+  int get kilometragem => throw _privateConstructorUsedError;
 
   /// Serializes this CarroModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -39,7 +41,7 @@ abstract class $CarroModelCopyWith<$Res> {
           CarroModel value, $Res Function(CarroModel) then) =
       _$CarroModelCopyWithImpl<$Res, CarroModel>;
   @useResult
-  $Res call({String id, String nome});
+  $Res call({String id, String nome, String placa, int kilometragem});
 }
 
 /// @nodoc
@@ -59,6 +61,8 @@ class _$CarroModelCopyWithImpl<$Res, $Val extends CarroModel>
   $Res call({
     Object? id = null,
     Object? nome = null,
+    Object? placa = null,
+    Object? kilometragem = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -69,6 +73,14 @@ class _$CarroModelCopyWithImpl<$Res, $Val extends CarroModel>
           ? _value.nome
           : nome // ignore: cast_nullable_to_non_nullable
               as String,
+      placa: null == placa
+          ? _value.placa
+          : placa // ignore: cast_nullable_to_non_nullable
+              as String,
+      kilometragem: null == kilometragem
+          ? _value.kilometragem
+          : kilometragem // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -81,7 +93,7 @@ abstract class _$$CarroModelImplCopyWith<$Res>
       __$$CarroModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String nome});
+  $Res call({String id, String nome, String placa, int kilometragem});
 }
 
 /// @nodoc
@@ -99,6 +111,8 @@ class __$$CarroModelImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? nome = null,
+    Object? placa = null,
+    Object? kilometragem = null,
   }) {
     return _then(_$CarroModelImpl(
       id: null == id
@@ -109,6 +123,14 @@ class __$$CarroModelImplCopyWithImpl<$Res>
           ? _value.nome
           : nome // ignore: cast_nullable_to_non_nullable
               as String,
+      placa: null == placa
+          ? _value.placa
+          : placa // ignore: cast_nullable_to_non_nullable
+              as String,
+      kilometragem: null == kilometragem
+          ? _value.kilometragem
+          : kilometragem // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -116,7 +138,11 @@ class __$$CarroModelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CarroModelImpl implements _CarroModel {
-  const _$CarroModelImpl({required this.id, required this.nome});
+  const _$CarroModelImpl(
+      {required this.id,
+      required this.nome,
+      required this.placa,
+      required this.kilometragem});
 
   factory _$CarroModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$CarroModelImplFromJson(json);
@@ -125,10 +151,14 @@ class _$CarroModelImpl implements _CarroModel {
   final String id;
   @override
   final String nome;
+  @override
+  final String placa;
+  @override
+  final int kilometragem;
 
   @override
   String toString() {
-    return 'CarroModel(id: $id, nome: $nome)';
+    return 'CarroModel(id: $id, nome: $nome, placa: $placa, kilometragem: $kilometragem)';
   }
 
   @override
@@ -137,12 +167,15 @@ class _$CarroModelImpl implements _CarroModel {
         (other.runtimeType == runtimeType &&
             other is _$CarroModelImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.nome, nome) || other.nome == nome));
+            (identical(other.nome, nome) || other.nome == nome) &&
+            (identical(other.placa, placa) || other.placa == placa) &&
+            (identical(other.kilometragem, kilometragem) ||
+                other.kilometragem == kilometragem));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, nome);
+  int get hashCode => Object.hash(runtimeType, id, nome, placa, kilometragem);
 
   /// Create a copy of CarroModel
   /// with the given fields replaced by the non-null parameter values.
@@ -163,7 +196,9 @@ class _$CarroModelImpl implements _CarroModel {
 abstract class _CarroModel implements CarroModel {
   const factory _CarroModel(
       {required final String id,
-      required final String nome}) = _$CarroModelImpl;
+      required final String nome,
+      required final String placa,
+      required final int kilometragem}) = _$CarroModelImpl;
 
   factory _CarroModel.fromJson(Map<String, dynamic> json) =
       _$CarroModelImpl.fromJson;
@@ -172,6 +207,10 @@ abstract class _CarroModel implements CarroModel {
   String get id;
   @override
   String get nome;
+  @override
+  String get placa;
+  @override
+  int get kilometragem;
 
   /// Create a copy of CarroModel
   /// with the given fields replaced by the non-null parameter values.

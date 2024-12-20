@@ -16,9 +16,9 @@ class CarrosCadastroScreen extends StatefulWidget {
 }
 
 class _CarrosCadastroScreenState extends State<CarrosCadastroScreen> {
-  final TextEditingController nomeController = TextEditingController();
-  final TextEditingController placaController = TextEditingController();
-  final TextEditingController kilometragemController = TextEditingController();
+  final _nomeController = TextEditingController();
+  final _placaController = TextEditingController();
+  final _kilometragemController = TextEditingController();
 
   void _listen() {
     if (widget.viewModel.gravar.isError) {
@@ -36,9 +36,16 @@ class _CarrosCadastroScreenState extends State<CarrosCadastroScreen> {
 
   @override
   void dispose() {
+    _nomeController.dispose();
+    _placaController.dispose();
+    _kilometragemController.dispose();
+
     widget.viewModel.gravar.removeListener(_listen);
+    widget.viewModel.dispose();
     super.dispose();
   }
+
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -48,13 +55,15 @@ class _CarrosCadastroScreenState extends State<CarrosCadastroScreen> {
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          var dados = DadosCadastroCarro(
-            nome: nomeController.text,
-            placa: placaController.text,
-            kilometragem: kilometragemController.text,
-          );
+          if (_formKey.currentState!.validate()) {
+            var dados = ParamsGravaCarro(
+              nome: _nomeController.text,
+              placa: _placaController.text,
+              kilometragem: _kilometragemController.text,
+            );
 
-          widget.viewModel.gravar.execute(dados);
+            widget.viewModel.gravar.execute(dados);
+          }
         },
         label: Text("Gravar"),
       ),
@@ -70,9 +79,11 @@ class _CarrosCadastroScreenState extends State<CarrosCadastroScreen> {
             return child!;
           },
           child: FormCarrosCadastro(
-            nomeController: nomeController,
-            placaController: placaController,
-            kilometragemController: kilometragemController,
+            nomeController: _nomeController,
+            placaController: _placaController,
+            kilometragemController: _kilometragemController,
+            viewModel: widget.viewModel,
+            formKey: _formKey,
           ),
         ),
       ),
