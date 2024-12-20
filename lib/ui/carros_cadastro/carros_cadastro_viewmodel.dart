@@ -16,19 +16,7 @@ class CarrosCadastroViewmodel extends ChangeNotifier {
 
   Future<Result<void>> _gravar(ParamsGravaCarro params) async {
     var carroModel = params.fromCarroModel();
-    final dados = await repository.gravar(carroModel);
-
-    switch (dados) {
-      case Ok<CarroModel>():
-        debugPrint("Sucesso ${dados.value.nome}");
-        break;
-      case Error<CarroModel>():
-        debugPrint("Erro");
-        break;
-      default:
-    }
-
-    return dados;
+    return await repository.gravar(carroModel);
   }
 }
 
@@ -45,7 +33,7 @@ class ParamsGravaCarro {
 
   CarroModel fromCarroModel() {
     return CarroModel(
-      id: "1",
+      id: null,
       nome: nome,
       placa: placa,
       kilometragem: int.parse(kilometragem),

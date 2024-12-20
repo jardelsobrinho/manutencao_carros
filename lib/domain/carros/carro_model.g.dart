@@ -8,7 +8,7 @@ part of 'carro_model.dart';
 
 _$CarroModelImpl _$$CarroModelImplFromJson(Map<String, dynamic> json) =>
     _$CarroModelImpl(
-      id: json['id'] as String,
+      id: (json['id'] as num?)?.toInt(),
       nome: json['nome'] as String,
       placa: json['placa'] as String,
       kilometragem: (json['kilometragem'] as num).toInt(),
@@ -16,7 +16,6 @@ _$CarroModelImpl _$$CarroModelImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$CarroModelImplToJson(_$CarroModelImpl instance) =>
     <String, dynamic>{
-      'id': instance.id,
       'nome': instance.nome,
       'placa': instance.placa,
       'kilometragem': instance.kilometragem,

@@ -5,8 +5,8 @@ part 'carro_model.g.dart';
 
 @freezed
 abstract class CarroModel with _$CarroModel {
-  const factory CarroModel({
-    required String id,
+  factory CarroModel({
+    @JsonKey(includeToJson: false, includeFromJson: true) required int? id,
     required String nome,
     required String placa,
     required int kilometragem,

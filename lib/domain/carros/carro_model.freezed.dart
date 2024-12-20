@@ -20,7 +20,8 @@ CarroModel _$CarroModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CarroModel {
-  String get id => throw _privateConstructorUsedError;
+  @JsonKey(includeToJson: false, includeFromJson: true)
+  int? get id => throw _privateConstructorUsedError;
   String get nome => throw _privateConstructorUsedError;
   String get placa => throw _privateConstructorUsedError;
   int get kilometragem => throw _privateConstructorUsedError;
@@ -41,7 +42,11 @@ abstract class $CarroModelCopyWith<$Res> {
           CarroModel value, $Res Function(CarroModel) then) =
       _$CarroModelCopyWithImpl<$Res, CarroModel>;
   @useResult
-  $Res call({String id, String nome, String placa, int kilometragem});
+  $Res call(
+      {@JsonKey(includeToJson: false, includeFromJson: true) int? id,
+      String nome,
+      String placa,
+      int kilometragem});
 }
 
 /// @nodoc
@@ -59,16 +64,16 @@ class _$CarroModelCopyWithImpl<$Res, $Val extends CarroModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
     Object? nome = null,
     Object? placa = null,
     Object? kilometragem = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int?,
       nome: null == nome
           ? _value.nome
           : nome // ignore: cast_nullable_to_non_nullable
@@ -93,7 +98,11 @@ abstract class _$$CarroModelImplCopyWith<$Res>
       __$$CarroModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String nome, String placa, int kilometragem});
+  $Res call(
+      {@JsonKey(includeToJson: false, includeFromJson: true) int? id,
+      String nome,
+      String placa,
+      int kilometragem});
 }
 
 /// @nodoc
@@ -109,16 +118,16 @@ class __$$CarroModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
     Object? nome = null,
     Object? placa = null,
     Object? kilometragem = null,
   }) {
     return _then(_$CarroModelImpl(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int?,
       nome: null == nome
           ? _value.nome
           : nome // ignore: cast_nullable_to_non_nullable
@@ -138,8 +147,8 @@ class __$$CarroModelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CarroModelImpl implements _CarroModel {
-  const _$CarroModelImpl(
-      {required this.id,
+  _$CarroModelImpl(
+      {@JsonKey(includeToJson: false, includeFromJson: true) required this.id,
       required this.nome,
       required this.placa,
       required this.kilometragem});
@@ -148,7 +157,8 @@ class _$CarroModelImpl implements _CarroModel {
       _$$CarroModelImplFromJson(json);
 
   @override
-  final String id;
+  @JsonKey(includeToJson: false, includeFromJson: true)
+  final int? id;
   @override
   final String nome;
   @override
@@ -194,8 +204,9 @@ class _$CarroModelImpl implements _CarroModel {
 }
 
 abstract class _CarroModel implements CarroModel {
-  const factory _CarroModel(
-      {required final String id,
+  factory _CarroModel(
+      {@JsonKey(includeToJson: false, includeFromJson: true)
+      required final int? id,
       required final String nome,
       required final String placa,
       required final int kilometragem}) = _$CarroModelImpl;
@@ -204,7 +215,8 @@ abstract class _CarroModel implements CarroModel {
       _$CarroModelImpl.fromJson;
 
   @override
-  String get id;
+  @JsonKey(includeToJson: false, includeFromJson: true)
+  int? get id;
   @override
   String get nome;
   @override

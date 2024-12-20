@@ -54,7 +54,7 @@ class _CarrosCadastroScreenState extends State<CarrosCadastroScreen> {
         title: Text("Cadastro de Carro"),
       ),
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {
+        onPressed: () async {
           if (_formKey.currentState!.validate()) {
             var dados = ParamsGravaCarro(
               nome: _nomeController.text,
@@ -62,7 +62,7 @@ class _CarrosCadastroScreenState extends State<CarrosCadastroScreen> {
               kilometragem: _kilometragemController.text,
             );
 
-            widget.viewModel.gravar.execute(dados);
+            await widget.viewModel.gravar.execute(dados);
           }
         },
         label: Text("Gravar"),
