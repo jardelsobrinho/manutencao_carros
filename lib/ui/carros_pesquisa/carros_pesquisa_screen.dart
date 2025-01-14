@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:manutencao_carros/config/widgets/loading_widget.dart';
+import 'package:manutencao_carros/config/widgets/textfield_widget.dart';
 import 'package:manutencao_carros/ui/carros_pesquisa/carros_pesquisa_viewmodel.dart';
 
 class CarrosPesquisaScreen extends StatefulWidget {
@@ -49,14 +50,8 @@ class _CarrosPesquisaScreenState extends State<CarrosPesquisaScreen> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text("Nome"),
-                                Text(
-                                  carro.nome,
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
+                                TextFieldWidget(
+                                    label: "Nome", value: carro.nome),
                                 Text("Placa"),
                                 Text(
                                   carro.placa,
