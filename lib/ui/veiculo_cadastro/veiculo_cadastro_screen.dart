@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:manutencao_carros/config/extensions/buildcontext_extensions.dart';
 import 'package:manutencao_carros/config/widgets/loading_widget.dart';
-import 'package:manutencao_carros/ui/carros_cadastro/carros_cadastro_viewmodel.dart';
-import 'package:manutencao_carros/ui/carros_cadastro/form_carros_cadastro.dart';
+import 'package:manutencao_carros/ui/veiculo_cadastro/veiculo_cadastro_viewmodel.dart';
+import 'package:manutencao_carros/ui/veiculo_cadastro/widgets/veiculo_cadastro_form.dart';
 
 class CarrosCadastroScreen extends StatefulWidget {
-  final CarrosCadastroViewmodel viewModel;
+  final VeiculoCadastroViewmodel viewModel;
+  final int veiculoId;
   const CarrosCadastroScreen({
     super.key,
+    required this.veiculoId,
     required this.viewModel,
   });
 
@@ -20,17 +23,21 @@ class _CarrosCadastroScreenState extends State<CarrosCadastroScreen> {
   final _placaController = TextEditingController();
   final _kilometragemController = TextEditingController();
 
-  void _listen() {
+  void _listen() async {
     if (widget.viewModel.gravar.isError) {
       context.showErro(mensagem: widget.viewModel.gravar.messageError);
     } else if (widget.viewModel.gravar.idCompleted) {
-      context.showSucesso(mensagem: "Dados gravados com sucesso");
+      context.pop(true);
     }
   }
 
   @override
   void initState() {
     super.initState();
+    _nomeController.text = "";
+    _placaController.text = "";
+    _kilometragemController.text = "";
+
     widget.viewModel.gravar.addListener(_listen);
   }
 
@@ -51,12 +58,15 @@ class _CarrosCadastroScreenState extends State<CarrosCadastroScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Cadastro de Carro"),
+        title: widget.veiculoId == 0
+            ? Text("Novo de Veículo")
+            : Text("Edição de Veículo"),
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () async {
           if (_formKey.currentState!.validate()) {
             var dados = ParamsGravaCarro(
+              id: widget.veiculoId,
               nome: _nomeController.text,
               placa: _placaController.text,
               kilometragem: _kilometragemController.text,
@@ -66,19 +76,24 @@ class _CarrosCadastroScreenState extends State<CarrosCadastroScreen> {
           }
         },
         label: Text("Gravar"),
+        icon: Icon(Icons.save),
       ),
       body: Padding(
         padding: const EdgeInsets.all(12.0),
         child: ListenableBuilder(
-          listenable: widget.viewModel.gravar,
+          listenable: Listenable.merge([
+            widget.viewModel.gravar,
+            widget.viewModel.carregaDados,
+          ]),
           builder: (_, child) {
-            if (widget.viewModel.gravar.running) {
+            if (widget.viewModel.gravar.running ||
+                widget.viewModel.carregaDados.running) {
               return LoadingWidget();
             }
 
             return child!;
           },
-          child: FormCarrosCadastro(
+          child: VeiculoCadastroForm(
             nomeController: _nomeController,
             placaController: _placaController,
             kilometragemController: _kilometragemController,

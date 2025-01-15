@@ -17,10 +17,6 @@ extension BuildContextExtension on BuildContext {
     );
   }
 
-  void pop<T extends Object?>([T? result]) {
-    Navigator.pop(this, result);
-  }
-
   void showErro({required String mensagem}) {
     ScaffoldMessenger.of(this).showSnackBar(
       SnackBar(

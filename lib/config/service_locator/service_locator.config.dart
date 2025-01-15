@@ -12,12 +12,13 @@ import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:supabase_flutter/supabase_flutter.dart' as _i454;
 
-import '../../data/repositories/carros/carro_repository.dart' as _i585;
-import '../../data/repositories/carros/carro_repository_impl.dart' as _i7;
-import '../../data/services/api/carro_services.dart' as _i850;
-import '../../data/services/api/supabase/carro_supabase_services.dart' as _i881;
-import '../../ui/carros_cadastro/carros_cadastro_viewmodel.dart' as _i446;
-import '../../ui/carros_pesquisa/carros_pesquisa_viewmodel.dart' as _i364;
+import '../../data/repositories/veiculos/veiculo_repository.dart' as _i191;
+import '../../data/repositories/veiculos/veiculo_repository_impl.dart' as _i204;
+import '../../data/services/api/supabase/veiculo_supabase_services.dart'
+    as _i672;
+import '../../data/services/api/veiculo_services.dart' as _i422;
+import '../../ui/veiculo_cadastro/veiculo_cadastro_viewmodel.dart' as _i778;
+import '../../ui/veiculo_pesquisa/veiculo_pesquisa_viewmodel.dart' as _i652;
 import '../supabase/supabase_module.dart' as _i784;
 
 extension GetItInjectableX on _i174.GetIt {
@@ -33,14 +34,16 @@ extension GetItInjectableX on _i174.GetIt {
     );
     final registerModule = _$RegisterModule();
     gh.singleton<_i454.SupabaseClient>(() => registerModule.supabaseClient);
-    gh.factory<_i850.CarroServices>(() => _i881.CarroSupabaseServices(
+    gh.factory<_i422.VeiculoServices>(() => _i672.VeiculoSupabaseServices(
         supabaseClient: gh<_i454.SupabaseClient>()));
-    gh.factory<_i585.CarroRepository>(
-        () => _i7.CarroRepositoryImpl(service: gh<_i850.CarroServices>()));
-    gh.factory<_i446.CarrosCadastroViewmodel>(() =>
-        _i446.CarrosCadastroViewmodel(repository: gh<_i585.CarroRepository>()));
-    gh.factory<_i364.CarrosPesquisaViewModel>(() =>
-        _i364.CarrosPesquisaViewModel(repository: gh<_i585.CarroRepository>()));
+    gh.factory<_i191.VeiculoRepository>(() =>
+        _i204.VeiculoRepositoryImpl(service: gh<_i422.VeiculoServices>()));
+    gh.factory<_i778.VeiculoCadastroViewmodel>(() =>
+        _i778.VeiculoCadastroViewmodel(
+            repository: gh<_i191.VeiculoRepository>()));
+    gh.factory<_i652.VeiculoPesquisaViewModel>(() =>
+        _i652.VeiculoPesquisaViewModel(
+            repository: gh<_i191.VeiculoRepository>()));
     return this;
   }
 }

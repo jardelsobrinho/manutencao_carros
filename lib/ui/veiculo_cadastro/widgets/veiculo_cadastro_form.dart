@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:manutencao_carros/config/valiations/campo_maior_que_zero_validate.dart';
 import 'package:manutencao_carros/config/valiations/campo_obrigatorio_validate.dart';
 import 'package:manutencao_carros/config/widgets/textformfield_custom.dart';
-import 'package:manutencao_carros/ui/carros_cadastro/carros_cadastro_viewmodel.dart';
+import 'package:manutencao_carros/ui/veiculo_cadastro/veiculo_cadastro_viewmodel.dart';
 
-class FormCarrosCadastro extends StatelessWidget {
+class VeiculoCadastroForm extends StatelessWidget {
   final TextEditingController nomeController;
   final TextEditingController placaController;
   final TextEditingController kilometragemController;
-  final CarrosCadastroViewmodel viewModel;
+  final VeiculoCadastroViewmodel viewModel;
   final GlobalKey<FormState> formKey;
 
-  const FormCarrosCadastro({
+  const VeiculoCadastroForm({
     super.key,
     required this.nomeController,
     required this.placaController,
