@@ -10,9 +10,9 @@ abstract class CommandBase<T> extends ChangeNotifier {
   bool _running = false;
   bool get running => _running;
 
-  Result<T>? _result;
+  Result<T> _result = Result.empty();
   bool get isError => _result is Error;
-  bool get idCompleted => _result is Ok;
+  bool get isCompleted => _result is Ok;
   String get messageError {
     if (_result is Error) {
       return (_result as Error).message;

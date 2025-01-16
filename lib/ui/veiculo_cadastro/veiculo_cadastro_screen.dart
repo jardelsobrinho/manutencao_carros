@@ -23,11 +23,17 @@ class _CarrosCadastroScreenState extends State<CarrosCadastroScreen> {
   final _placaController = TextEditingController();
   final _kilometragemController = TextEditingController();
 
-  void _listen() async {
+  void _listenGravar() async {
     if (widget.viewModel.gravar.isError) {
       context.showErro(mensagem: widget.viewModel.gravar.messageError);
-    } else if (widget.viewModel.gravar.idCompleted) {
+    } else if (widget.viewModel.gravar.isCompleted) {
       context.pop(true);
+    }
+  }
+
+  void _listenCarregarDados() async {
+    if (widget.viewModel.carregaDados.isError) {
+      context.showErro(mensagem: widget.viewModel.carregaDados.messageError);
     }
   }
 
@@ -38,7 +44,12 @@ class _CarrosCadastroScreenState extends State<CarrosCadastroScreen> {
     _placaController.text = "";
     _kilometragemController.text = "";
 
-    widget.viewModel.gravar.addListener(_listen);
+    if (widget.veiculoId > 0) {
+      widget.viewModel.carregaDados.execute();
+    }
+
+    widget.viewModel.gravar.addListener(_listenGravar);
+    widget.viewModel.carregaDados.addListener(_listenCarregarDados);
   }
 
   @override
@@ -47,7 +58,8 @@ class _CarrosCadastroScreenState extends State<CarrosCadastroScreen> {
     _placaController.dispose();
     _kilometragemController.dispose();
 
-    widget.viewModel.gravar.removeListener(_listen);
+    widget.viewModel.gravar.removeListener(_listenGravar);
+    widget.viewModel.carregaDados.removeListener(_listenCarregarDados);
     widget.viewModel.dispose();
     super.dispose();
   }

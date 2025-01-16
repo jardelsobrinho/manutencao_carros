@@ -1,5 +1,6 @@
 abstract final class Routes {
   static const home = '/';
-  static const carrosCadastro = '/carros/cadastro';
-  static const carrosPesquisa = '/carros/pesquisa';
+  static const carroCadastro = '/carros/cadastro';
+  static const carroPesquisa = '/carros/pesquisa';
+  static const carroManutencao = '/carros/manutencao';
 }

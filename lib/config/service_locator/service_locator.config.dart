@@ -18,6 +18,7 @@ import '../../data/services/api/supabase/veiculo_supabase_services.dart'
     as _i672;
 import '../../data/services/api/veiculo_services.dart' as _i422;
 import '../../ui/veiculo_cadastro/veiculo_cadastro_viewmodel.dart' as _i778;
+import '../../ui/veiculo_manutencao/veiculo_manutencao_viewmodel.dart' as _i961;
 import '../../ui/veiculo_pesquisa/veiculo_pesquisa_viewmodel.dart' as _i652;
 import '../supabase/supabase_module.dart' as _i784;
 
@@ -33,6 +34,8 @@ extension GetItInjectableX on _i174.GetIt {
       environmentFilter,
     );
     final registerModule = _$RegisterModule();
+    gh.factory<_i961.VeiculoManutencaoViewmodel>(
+        () => _i961.VeiculoManutencaoViewmodel());
     gh.singleton<_i454.SupabaseClient>(() => registerModule.supabaseClient);
     gh.factory<_i422.VeiculoServices>(() => _i672.VeiculoSupabaseServices(
         supabaseClient: gh<_i454.SupabaseClient>()));

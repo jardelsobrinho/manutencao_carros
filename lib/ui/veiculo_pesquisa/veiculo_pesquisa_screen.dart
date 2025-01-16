@@ -44,7 +44,8 @@ class _VeiculoPesquisaScreenState extends State<VeiculoPesquisaScreen> {
                   itemBuilder: (context, index) {
                     final carro = widget.viewModel.listaVeiculos[index];
                     return VeiculoPesquisaItem(
-                      onTap: () {},
+                      onTap: () =>
+                          onIrParaVeiculoManutencao(veiculoId: carro.id!),
                       veiculoModel: carro,
                     );
                   },
@@ -54,17 +55,21 @@ class _VeiculoPesquisaScreenState extends State<VeiculoPesquisaScreen> {
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () => onNovoVeiculo(),
-        label: Text("Veiculo"),
+        label: Text("Veículo"),
         icon: Icon(Icons.add),
       ),
     );
   }
 
   void onNovoVeiculo() async {
-    final result = await context.push("${Routes.carrosCadastro}/0");
+    final result = await context.push("${Routes.carroCadastro}/1");
     if (result == true) {
       await Future.delayed(Duration(milliseconds: 300));
       if (mounted) context.showSucesso(mensagem: "Veículo gravado!");
     }
+  }
+
+  void onIrParaVeiculoManutencao({required int veiculoId}) {
+    context.push("${Routes.carroManutencao}/$veiculoId");
   }
 }
