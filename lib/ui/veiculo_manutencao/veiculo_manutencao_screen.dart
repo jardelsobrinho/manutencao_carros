@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:manutencao_carros/ui/veiculo_manutencao/veiculo_manutencao_viewmodel.dart';
+import 'package:manutencao_carros/ui/veiculo_manutencao/widgets/veiculo_manutencao_popup.dart';
 
 class VeiculoManutencaoScreen extends StatefulWidget {
   final VeiculoManutencaoViewmodel viewModel;
@@ -19,6 +20,7 @@ class _VeiculoManutencaoScreenState extends State<VeiculoManutencaoScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Manutenção de Veículo"),
+        actions: [VeiculoManutencaoPopup()],
       ),
       body: Text("Ola Mundo"),
     );
