@@ -9,15 +9,25 @@ import 'package:manutencao_carros/domain/carros/veiculo_model.dart';
 class VeiculoCadastroViewmodel extends ChangeNotifier {
   final VeiculoRepository repository;
   late final CommandArgs<void, ParamsGravaCarro> gravar;
-  late final Command<void> carregaDados;
+  late final CommandArgs<VeiculoModel, int> carregaDados;
 
   VeiculoCadastroViewmodel({required this.repository}) {
     gravar = CommandArgs(_gravar);
-    carregaDados = Command(_carregaDados);
+    carregaDados = CommandArgs(_carregaDados);
   }
 
-  Future<Result<void>> _carregaDados() async {
-    return Result.ok(null);
+  VeiculoModel _veiculo = VeiculoModel.empty();
+  VeiculoModel get veiculo => _veiculo;
+
+  Future<Result<VeiculoModel>> _carregaDados(int veiculoId) async {
+    final result = await repository.carregarPorId(veiculoId: veiculoId);
+
+    if (result is Ok) {
+      _veiculo = (result as Ok).value;
+      notifyListeners();
+    }
+
+    return result;
   }
 
   Future<Result<void>> _gravar(ParamsGravaCarro params) async {

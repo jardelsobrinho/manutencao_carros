@@ -18,7 +18,9 @@ class TextFormFieldCustom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      decoration: InputDecoration(labelText: label),
+      decoration: InputDecoration(
+        labelText: label,
+      ),
       controller: controller,
       keyboardType: TextInputType.number,
       inputFormatters: [

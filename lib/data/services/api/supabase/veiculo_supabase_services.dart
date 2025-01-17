@@ -52,4 +52,32 @@ class VeiculoSupabaseServices implements VeiculoServices {
       return Result.error(e.toString());
     }
   }
+
+  @override
+  Future<Result<VeiculoModel>> atualizar(VeiculoModel veiculoModel) async {
+    try {
+      var result = await supabaseClient
+          .from('veiculos')
+          .update(veiculoModel.toJson())
+          .eq('id', veiculoModel.id!)
+          .select();
+      return Result.ok(VeiculoModel.fromJson(result.first));
+    } catch (e) {
+      return Result.error(e.toString());
+    }
+  }
+
+  @override
+  Future<Result<void>> excluir({required int veiculoId}) async {
+    try {
+      await supabaseClient
+          .from('veiculos')
+          .delete()
+          .eq('id', veiculoId)
+          .select();
+      return Result.ok(null);
+    } catch (e) {
+      return Result.error(e.toString());
+    }
+  }
 }

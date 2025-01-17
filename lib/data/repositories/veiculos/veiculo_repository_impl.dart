@@ -12,7 +12,11 @@ class VeiculoRepositoryImpl implements VeiculoRepository {
 
   @override
   Future<Result<VeiculoModel>> gravar(VeiculoModel veiculo) async {
-    return await service.inserir(veiculo);
+    if (veiculo.id != null) {
+      return await service.atualizar(veiculo);
+    } else {
+      return await service.inserir(veiculo);
+    }
   }
 
   @override

@@ -34,6 +34,11 @@ class _VeiculoCadastroScreenState extends State<VeiculoCadastroScreen> {
   void _listenCarregarDados() async {
     if (widget.viewModel.carregaDados.isError) {
       context.showErro(mensagem: widget.viewModel.carregaDados.messageError);
+    } else if (widget.viewModel.carregaDados.isCompleted) {
+      _nomeController.text = widget.viewModel.veiculo.nome;
+      _placaController.text = widget.viewModel.veiculo.placa;
+      _kilometragemController.text =
+          widget.viewModel.veiculo.kilometragem.toString();
     }
   }
 
@@ -46,7 +51,7 @@ class _VeiculoCadastroScreenState extends State<VeiculoCadastroScreen> {
     _kilometragemController.text = "";
 
     if (widget.veiculoId > 0) {
-      widget.viewModel.carregaDados.execute();
+      widget.viewModel.carregaDados.execute(widget.veiculoId);
     }
 
     widget.viewModel.gravar.addListener(_listenGravar);

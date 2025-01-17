@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:manutencao_carros/config/valiations/campo_maior_que_zero_validate.dart';
 import 'package:manutencao_carros/config/valiations/campo_obrigatorio_validate.dart';
+import 'package:manutencao_carros/config/widgets/card_widget.dart';
 import 'package:manutencao_carros/config/widgets/textformfield_custom.dart';
 import 'package:manutencao_carros/ui/veiculo_cadastro/veiculo_cadastro_viewmodel.dart';
 
@@ -24,7 +25,8 @@ class VeiculoCadastroForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return Form(
       key: formKey,
-      child: Column(
+      child: CardWidget(
+        spacing: 12,
         children: [
           TextFormFieldCustom(
             label: "Nome",
