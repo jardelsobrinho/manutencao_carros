@@ -34,8 +34,6 @@ extension GetItInjectableX on _i174.GetIt {
       environmentFilter,
     );
     final registerModule = _$RegisterModule();
-    gh.factory<_i961.VeiculoManutencaoViewmodel>(
-        () => _i961.VeiculoManutencaoViewmodel());
     gh.singleton<_i454.SupabaseClient>(() => registerModule.supabaseClient);
     gh.factory<_i422.VeiculoServices>(() => _i672.VeiculoSupabaseServices(
         supabaseClient: gh<_i454.SupabaseClient>()));
@@ -46,6 +44,9 @@ extension GetItInjectableX on _i174.GetIt {
             repository: gh<_i191.VeiculoRepository>()));
     gh.factory<_i652.VeiculoPesquisaViewModel>(() =>
         _i652.VeiculoPesquisaViewModel(
+            repository: gh<_i191.VeiculoRepository>()));
+    gh.factory<_i961.VeiculoManutencaoViewmodel>(() =>
+        _i961.VeiculoManutencaoViewmodel(
             repository: gh<_i191.VeiculoRepository>()));
     return this;
   }

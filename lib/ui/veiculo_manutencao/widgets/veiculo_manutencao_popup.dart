@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:manutencao_carros/config/routing/routes.dart';
 
 class VeiculoManutencaoPopup extends StatelessWidget {
-  const VeiculoManutencaoPopup({super.key});
+  final int veiculoId;
+  const VeiculoManutencaoPopup({
+    required this.veiculoId,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -11,9 +14,13 @@ class VeiculoManutencaoPopup extends StatelessWidget {
       onSelected: (value) {
         switch (value) {
           case VeiculoManutencaoMenuItem.alterar:
-            context.push("${Routes.carroCadastro}/1");
+            Navigator.pushNamed(
+              context,
+              Routes.carroCadastro,
+              arguments: veiculoId,
+            );
+
           case VeiculoManutencaoMenuItem.excluir:
-            // TODO: Handle this case.
             throw UnimplementedError();
         }
       },

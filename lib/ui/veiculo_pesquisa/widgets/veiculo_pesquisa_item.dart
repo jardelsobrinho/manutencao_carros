@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:manutencao_carros/config/widgets/card_widget.dart';
+import 'package:manutencao_carros/config/widgets/card_ontap_widget.dart';
 import 'package:manutencao_carros/config/widgets/textfield_widget.dart';
 import 'package:manutencao_carros/domain/carros/veiculo_model.dart';
 
@@ -14,7 +14,7 @@ class VeiculoPesquisaItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CardWidget(
+    return CardOnTapWidget(
       onTap: onTap,
       children: [
         Row(

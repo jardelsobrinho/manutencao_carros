@@ -34,4 +34,22 @@ class VeiculoSupabaseServices implements VeiculoServices {
       return Result.error(e.toString());
     }
   }
+
+  @override
+  Future<Result<VeiculoModel>> carregarPorId({required int veiculoId}) async {
+    try {
+      var result =
+          await supabaseClient.from('veiculos').select().eq('id', veiculoId);
+      var listaCarros =
+          result.map((json) => VeiculoModel.fromJson(json)).toList();
+
+      if (listaCarros.isNotEmpty) {
+        return Result.ok(listaCarros[0]);
+      } else {
+        return Result.error("Nenhum veiculo encontrado com o id $veiculoId");
+      }
+    } catch (e) {
+      return Result.error(e.toString());
+    }
+  }
 }

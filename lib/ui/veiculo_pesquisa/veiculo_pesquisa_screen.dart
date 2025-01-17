@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:manutencao_carros/config/extensions/buildcontext_extensions.dart';
 import 'package:manutencao_carros/config/routing/routes.dart';
 import 'package:manutencao_carros/config/widgets/loading_widget.dart';
@@ -62,7 +61,11 @@ class _VeiculoPesquisaScreenState extends State<VeiculoPesquisaScreen> {
   }
 
   void onNovoVeiculo() async {
-    final result = await context.push("${Routes.carroCadastro}/1");
+    final result = await Navigator.pushNamed(
+      context,
+      Routes.carroCadastro,
+      arguments: 0,
+    );
     if (result == true) {
       await Future.delayed(Duration(milliseconds: 300));
       if (mounted) context.showSucesso(mensagem: "Veículo gravado!");
@@ -70,6 +73,10 @@ class _VeiculoPesquisaScreenState extends State<VeiculoPesquisaScreen> {
   }
 
   void onIrParaVeiculoManutencao({required int veiculoId}) {
-    context.push("${Routes.carroManutencao}/$veiculoId");
+    Navigator.pushNamed(
+      context,
+      Routes.carroManutencao,
+      arguments: veiculoId,
+    );
   }
 }

@@ -17,8 +17,7 @@ class VeiculoCadastroViewmodel extends ChangeNotifier {
   }
 
   Future<Result<void>> _carregaDados() async {
-    await Future.delayed(Duration(seconds: 3));
-    return Result.error("Falha no envio");
+    return Result.ok(null);
   }
 
   Future<Result<void>> _gravar(ParamsGravaCarro params) async {

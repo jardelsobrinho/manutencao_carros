@@ -19,4 +19,9 @@ class VeiculoRepositoryImpl implements VeiculoRepository {
   Future<Result<List<VeiculoModel>>> pesquisar() async {
     return await service.pesquisa();
   }
+
+  @override
+  Future<Result<VeiculoModel>> carregarPorId({required int veiculoId}) async {
+    return await service.carregarPorId(veiculoId: veiculoId);
+  }
 }

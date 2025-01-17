@@ -5,20 +5,20 @@ import 'package:manutencao_carros/config/widgets/loading_widget.dart';
 import 'package:manutencao_carros/ui/veiculo_cadastro/veiculo_cadastro_viewmodel.dart';
 import 'package:manutencao_carros/ui/veiculo_cadastro/widgets/veiculo_cadastro_form.dart';
 
-class CarrosCadastroScreen extends StatefulWidget {
+class VeiculoCadastroScreen extends StatefulWidget {
   final VeiculoCadastroViewmodel viewModel;
   final int veiculoId;
-  const CarrosCadastroScreen({
+  const VeiculoCadastroScreen({
     super.key,
     required this.veiculoId,
     required this.viewModel,
   });
 
   @override
-  State<CarrosCadastroScreen> createState() => _CarrosCadastroScreenState();
+  State<VeiculoCadastroScreen> createState() => _VeiculoCadastroScreenState();
 }
 
-class _CarrosCadastroScreenState extends State<CarrosCadastroScreen> {
+class _VeiculoCadastroScreenState extends State<VeiculoCadastroScreen> {
   final _nomeController = TextEditingController();
   final _placaController = TextEditingController();
   final _kilometragemController = TextEditingController();
@@ -40,6 +40,7 @@ class _CarrosCadastroScreenState extends State<CarrosCadastroScreen> {
   @override
   void initState() {
     super.initState();
+
     _nomeController.text = "";
     _placaController.text = "";
     _kilometragemController.text = "";

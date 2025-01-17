@@ -14,4 +14,11 @@ abstract class VeiculoModel with _$VeiculoModel {
 
   factory VeiculoModel.fromJson(Map<String, dynamic> json) =>
       _$VeiculoModelFromJson(json);
+
+  factory VeiculoModel.empty() => VeiculoModel(
+        id: 0,
+        nome: "",
+        placa: "",
+        kilometragem: 0,
+      );
 }
