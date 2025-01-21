@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:manutencao_carros/config/commands/command.dart';
 import 'package:manutencao_carros/config/extensions/buildcontext_extensions.dart';
 import 'package:manutencao_carros/config/widgets/loading_widget.dart';
+import 'package:manutencao_carros/domain/carros/veiculo_model.dart';
 import 'package:manutencao_carros/ui/veiculo_cadastro/veiculo_cadastro_viewmodel.dart';
 import 'package:manutencao_carros/ui/veiculo_cadastro/widgets/veiculo_cadastro_form.dart';
 
@@ -19,22 +20,25 @@ class VeiculoCadastroScreen extends StatefulWidget {
 }
 
 class _VeiculoCadastroScreenState extends State<VeiculoCadastroScreen> {
+  late final CommandArgs<void, ParamsGravaCarro> gravarCommand;
+  late final CommandArgs<VeiculoModel, int> carregaDadosCommand;
+
   final _nomeController = TextEditingController();
   final _placaController = TextEditingController();
   final _kilometragemController = TextEditingController();
 
   void _listenGravar() async {
-    if (widget.viewModel.gravar.isError) {
-      context.showErro(mensagem: widget.viewModel.gravar.messageError);
-    } else if (widget.viewModel.gravar.isCompleted) {
-      context.pop(true);
+    if (gravarCommand.isError) {
+      context.showErro(mensagem: gravarCommand.messageError);
+    } else if (gravarCommand.isCompleted) {
+      context.pop(result: true);
     }
   }
 
   void _listenCarregarDados() async {
-    if (widget.viewModel.carregaDados.isError) {
-      context.showErro(mensagem: widget.viewModel.carregaDados.messageError);
-    } else if (widget.viewModel.carregaDados.isCompleted) {
+    if (carregaDadosCommand.isError) {
+      context.showErro(mensagem: carregaDadosCommand.messageError);
+    } else if (carregaDadosCommand.isCompleted) {
       _nomeController.text = widget.viewModel.veiculo.nome;
       _placaController.text = widget.viewModel.veiculo.placa;
       _kilometragemController.text =
@@ -46,16 +50,19 @@ class _VeiculoCadastroScreenState extends State<VeiculoCadastroScreen> {
   void initState() {
     super.initState();
 
+    gravarCommand = widget.viewModel.gravar;
+    carregaDadosCommand = widget.viewModel.carregaDados;
+
     _nomeController.text = "";
     _placaController.text = "";
     _kilometragemController.text = "";
 
     if (widget.veiculoId > 0) {
-      widget.viewModel.carregaDados.execute(widget.veiculoId);
+      carregaDadosCommand.execute(widget.veiculoId);
     }
 
-    widget.viewModel.gravar.addListener(_listenGravar);
-    widget.viewModel.carregaDados.addListener(_listenCarregarDados);
+    gravarCommand.addListener(_listenGravar);
+    carregaDadosCommand.addListener(_listenCarregarDados);
   }
 
   @override
@@ -64,8 +71,8 @@ class _VeiculoCadastroScreenState extends State<VeiculoCadastroScreen> {
     _placaController.dispose();
     _kilometragemController.dispose();
 
-    widget.viewModel.gravar.removeListener(_listenGravar);
-    widget.viewModel.carregaDados.removeListener(_listenCarregarDados);
+    gravarCommand.removeListener(_listenGravar);
+    carregaDadosCommand.removeListener(_listenCarregarDados);
     widget.viewModel.dispose();
     super.dispose();
   }
@@ -90,7 +97,7 @@ class _VeiculoCadastroScreenState extends State<VeiculoCadastroScreen> {
               kilometragem: _kilometragemController.text,
             );
 
-            await widget.viewModel.gravar.execute(dados);
+            await gravarCommand.execute(dados);
           }
         },
         label: Text("Gravar"),
@@ -100,12 +107,11 @@ class _VeiculoCadastroScreenState extends State<VeiculoCadastroScreen> {
         padding: const EdgeInsets.all(12.0),
         child: ListenableBuilder(
           listenable: Listenable.merge([
-            widget.viewModel.gravar,
-            widget.viewModel.carregaDados,
+            gravarCommand,
+            carregaDadosCommand,
           ]),
           builder: (_, child) {
-            if (widget.viewModel.gravar.running ||
-                widget.viewModel.carregaDados.running) {
+            if (gravarCommand.running || carregaDadosCommand.running) {
               return LoadingWidget();
             }
 

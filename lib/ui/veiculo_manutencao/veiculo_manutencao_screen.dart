@@ -31,9 +31,7 @@ class _VeiculoManutencaoScreenState extends State<VeiculoManutencaoScreen> {
     if (excluirCommand.isError) {
       context.showErro(mensagem: excluirCommand.messageError);
     } else if (excluirCommand.isCompleted) {
-      Navigator.pushNamedAndRemoveUntil(
-          context, Routes.carroPesquisa, (route) => false);
-      await Future.delayed(Duration(milliseconds: 200));
+      await context.pushFinal(route: Routes.carroPesquisa, delayed: true);
       if (mounted) {
         context.showSucesso(mensagem: "Veículo excluído!");
       }
@@ -95,12 +93,15 @@ class _VeiculoManutencaoScreenState extends State<VeiculoManutencaoScreen> {
     );
   }
 
-  void _alterarVeiculo(int veiculoId) {
-    Navigator.pushNamed(
-      context,
-      Routes.carroCadastro,
+  void _alterarVeiculo(int veiculoId) async {
+    final result = await context.pushNamed(
+      route: Routes.carroCadastro,
       arguments: veiculoId,
     );
+
+    if (result == true) {
+      await carregarCommand.execute(veiculoId);
+    }
   }
 
   void _confirmaExcluirVeiculo(int veiculo) {

@@ -4,7 +4,7 @@ import 'package:manutencao_carros/data/services/api/veiculo_services.dart';
 import 'package:manutencao_carros/domain/carros/veiculo_model.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-@Injectable(as: VeiculoServices)
+@Singleton(as: VeiculoServices)
 class VeiculoSupabaseServices implements VeiculoServices {
   final SupabaseClient supabaseClient;
 

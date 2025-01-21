@@ -4,7 +4,7 @@ import 'package:manutencao_carros/data/repositories/veiculos/veiculo_repository.
 import 'package:manutencao_carros/data/services/api/veiculo_services.dart';
 import 'package:manutencao_carros/domain/carros/veiculo_model.dart';
 
-@Injectable(as: VeiculoRepository)
+@Singleton(as: VeiculoRepository)
 class VeiculoRepositoryImpl implements VeiculoRepository {
   final VeiculoServices service;
 

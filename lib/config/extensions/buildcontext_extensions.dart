@@ -1,19 +1,32 @@
 import 'package:flutter/material.dart';
 
 extension BuildContextExtension on BuildContext {
-  void pushFinal({required Widget page}) {
-    Navigator.pushReplacement(
+  Future<void> pushFinal({
+    required String route,
+    bool delayed = false,
+  }) async {
+    Navigator.pushNamedAndRemoveUntil(this, route, (route) => false);
+
+    if (delayed) {
+      await Future.delayed(Duration(milliseconds: 200));
+    }
+  }
+
+  Future<T?> pushNamed<T extends Object?>({
+    required String route,
+    Object? arguments,
+  }) {
+    return Navigator.pushNamed(
       this,
-      MaterialPageRoute(builder: (context) => page),
+      route,
+      arguments: arguments,
     );
   }
 
-  Future<T?> pushNamed<T extends Object?>(
-      {required String page, Object? arguments}) {
-    return Navigator.pushNamed(
+  void pop<T extends Object?>({Object? result}) {
+    Navigator.pop(
       this,
-      page,
-      arguments: arguments,
+      result,
     );
   }
 

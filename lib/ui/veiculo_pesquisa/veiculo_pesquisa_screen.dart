@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:manutencao_carros/config/commands/command.dart';
 import 'package:manutencao_carros/config/extensions/buildcontext_extensions.dart';
 import 'package:manutencao_carros/config/routing/routes.dart';
 import 'package:manutencao_carros/config/widgets/loading_widget.dart';
@@ -17,8 +18,11 @@ class VeiculoPesquisaScreen extends StatefulWidget {
 }
 
 class _VeiculoPesquisaScreenState extends State<VeiculoPesquisaScreen> {
+  late final Command<void> pesquisaCommand;
+
   @override
   void initState() {
+    pesquisaCommand = widget.viewModel.pesquisar;
     super.initState();
   }
 
@@ -28,9 +32,9 @@ class _VeiculoPesquisaScreenState extends State<VeiculoPesquisaScreen> {
       body: Padding(
         padding: const EdgeInsets.all(12.0),
         child: ListenableBuilder(
-          listenable: widget.viewModel.pesquisar,
+          listenable: pesquisaCommand,
           builder: (_, child) {
-            if (widget.viewModel.pesquisar.running) {
+            if (pesquisaCommand.running) {
               return LoadingWidget();
             }
             return child!;
@@ -62,22 +66,23 @@ class _VeiculoPesquisaScreenState extends State<VeiculoPesquisaScreen> {
   }
 
   void onNovoVeiculo() async {
-    final result = await Navigator.pushNamed(
-      context,
-      Routes.carroCadastro,
+    final result = await context.pushNamed(
+      route: Routes.carroCadastro,
       arguments: 0,
     );
+
     if (result == true) {
-      await Future.delayed(Duration(milliseconds: 300));
+      await Future.delayed(Duration(milliseconds: 200));
       if (mounted) context.showSucesso(mensagem: "Veículo gravado!");
     }
   }
 
-  void onIrParaVeiculoManutencao({required int veiculoId}) {
-    Navigator.pushNamed(
-      context,
-      Routes.carroManutencao,
+  void onIrParaVeiculoManutencao({required int veiculoId}) async {
+    await context.pushNamed(
+      route: Routes.carroManutencao,
       arguments: veiculoId,
     );
+
+    pesquisaCommand.execute();
   }
 }

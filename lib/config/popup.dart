@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:manutencao_carros/config/extensions/buildcontext_extensions.dart';
 
 showConfimation(
     {required BuildContext context,
@@ -33,7 +34,7 @@ showConfimation(
                   ElevatedButton(
                     onPressed: () {
                       onTapYes();
-                      Navigator.pop(context);
+                      context.pop();
                     },
                     child: Text(labelYes.toUpperCase()),
                   ),
@@ -43,7 +44,7 @@ showConfimation(
                         onTapNo();
                       }
 
-                      Navigator.pop(context);
+                      context.pop();
                     },
                     child: Text(labelNo.toUpperCase()),
                   ),
