@@ -9,13 +9,20 @@ import 'package:manutencao_carros/domain/carros/veiculo_model.dart';
 class VeiculoManutencaoViewmodel extends ChangeNotifier {
   final VeiculoRepository repository;
   late CommandArgs<VeiculoModel, int> carregarPorId;
+  late CommandArgs<void, int> excluirVeiculo;
 
   VeiculoManutencaoViewmodel({required this.repository}) {
     carregarPorId = CommandArgs(_carregarPorId);
+    excluirVeiculo = CommandArgs(_excluirVeiculo);
   }
 
   VeiculoModel _veiculoManutencao = VeiculoModel.empty();
   VeiculoModel get veiculoManutencao => _veiculoManutencao;
+
+  Future<Result<void>> _excluirVeiculo(int veiculoId) async {
+    final result = await repository.excluirVeiculoPorId(veiculoId: veiculoId);
+    return result;
+  }
 
   Future<Result<VeiculoModel>> _carregarPorId(int veiculoId) async {
     final result = await repository.carregarPorId(veiculoId: veiculoId);

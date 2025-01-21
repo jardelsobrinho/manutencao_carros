@@ -3,8 +3,12 @@ import 'package:manutencao_carros/config/routing/routes.dart';
 
 class VeiculoManutencaoPopup extends StatelessWidget {
   final int veiculoId;
+  final void Function(int) onTapAlterarVeiculo;
+  final void Function(int) onTapExcluirVeiculo;
   const VeiculoManutencaoPopup({
     required this.veiculoId,
+    required this.onTapAlterarVeiculo,
+    required this.onTapExcluirVeiculo,
     super.key,
   });
 
@@ -14,14 +18,10 @@ class VeiculoManutencaoPopup extends StatelessWidget {
       onSelected: (value) {
         switch (value) {
           case VeiculoManutencaoMenuItem.alterar:
-            Navigator.pushNamed(
-              context,
-              Routes.carroCadastro,
-              arguments: veiculoId,
-            );
+            onTapAlterarVeiculo(veiculoId);
 
           case VeiculoManutencaoMenuItem.excluir:
-            throw UnimplementedError();
+            onTapExcluirVeiculo(veiculoId);
         }
       },
       itemBuilder: (BuildContext bc) {

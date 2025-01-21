@@ -5,4 +5,5 @@ abstract class VeiculoRepository {
   Future<Result<VeiculoModel>> gravar(VeiculoModel veiculo);
   Future<Result<List<VeiculoModel>>> pesquisar();
   Future<Result<VeiculoModel>> carregarPorId({required int veiculoId});
+  Future<Result<void>> excluirVeiculoPorId({required int veiculoId});
 }

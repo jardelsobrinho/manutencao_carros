@@ -40,6 +40,7 @@ class _VeiculoPesquisaScreenState extends State<VeiculoPesquisaScreen> {
               builder: (context, child) {
                 return ListView.builder(
                   itemCount: widget.viewModel.listaVeiculos.length,
+                  padding: EdgeInsets.only(bottom: 60),
                   itemBuilder: (context, index) {
                     final carro = widget.viewModel.listaVeiculos[index];
                     return VeiculoPesquisaItem(
