@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:manutencao_carros/config/routing/routes.dart';
 import 'package:manutencao_carros/config/service_locator/service_locator.dart';
+import 'package:manutencao_carros/ui/consumo_cadastro/consumo_cadastro_screen.dart';
 import 'package:manutencao_carros/ui/veiculo_cadastro/veiculo_cadastro_screen.dart';
 import 'package:manutencao_carros/ui/veiculo_manutencao/veiculo_manutencao_screen.dart';
 import 'package:manutencao_carros/ui/veiculo_pesquisa/veiculo_pesquisa_screen.dart';
@@ -34,6 +35,18 @@ MaterialPageRoute? router(RouteSettings settings) {
       builder: (context) {
         return VeiculoCadastroScreen(
           veiculoId: veiculoId,
+          viewModel: getIt(),
+        );
+      },
+    );
+  }
+
+  if (settings.name == Routes.consumoCadastro) {
+    final arguments = settings.arguments as ConsumoCadastroArguments;
+    return MaterialPageRoute(
+      builder: (context) {
+        return ConsumoCadastroScreen(
+          arguments: arguments,
           viewModel: getIt(),
         );
       },

@@ -5,6 +5,7 @@ import 'package:manutencao_carros/config/popup.dart';
 import 'package:manutencao_carros/config/routing/routes.dart';
 import 'package:manutencao_carros/config/widgets/loading_widget.dart';
 import 'package:manutencao_carros/domain/carros/veiculo_model.dart';
+import 'package:manutencao_carros/ui/consumo_cadastro/consumo_cadastro_screen.dart';
 import 'package:manutencao_carros/ui/veiculo_manutencao/veiculo_manutencao_viewmodel.dart';
 import 'package:manutencao_carros/ui/veiculo_manutencao/widgets/veiculo_manutencao_card.dart';
 import 'package:manutencao_carros/ui/veiculo_manutencao/widgets/veiculo_manutencao_popup.dart';
@@ -67,6 +68,13 @@ class _VeiculoManutencaoScreenState extends State<VeiculoManutencaoScreen> {
           )
         ],
       ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () async {
+          _irParaConsumoCadastro(veiculoId: widget.veiculoId);
+        },
+        label: Text("Consumo"),
+        icon: Icon(Icons.add),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(12.0),
         child: ListenableBuilder(
@@ -115,5 +123,17 @@ class _VeiculoManutencaoScreenState extends State<VeiculoManutencaoScreen> {
 
   void _excluirVeiculo({required int veiculoId}) {
     excluirCommand.execute(veiculoId);
+  }
+
+  void _irParaConsumoCadastro({required int veiculoId}) {
+    final arguments = ConsumoCadastroArguments(
+      veiculoId: veiculoId,
+      consumoId: 0,
+    );
+
+    context.pushNamed(
+      route: Routes.consumoCadastro,
+      arguments: arguments,
+    );
   }
 }

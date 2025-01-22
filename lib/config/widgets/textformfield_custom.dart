@@ -22,10 +22,12 @@ class TextFormFieldCustom extends StatelessWidget {
         labelText: label,
       ),
       controller: controller,
-      keyboardType: TextInputType.number,
+      keyboardType: _retornaKeyboardType(),
       inputFormatters: [
         if (tipo == TipoTextFormField.onlyNumber)
           FilteringTextInputFormatter.digitsOnly
+        else if (tipo == TipoTextFormField.decimals)
+          DecimalTextInputFormatter()
       ],
       autovalidateMode: AutovalidateMode.onUserInteraction,
       validator: (value) {
@@ -36,6 +38,35 @@ class TextFormFieldCustom extends StatelessWidget {
       },
     );
   }
+
+  TextInputType? _retornaKeyboardType() {
+    switch (tipo) {
+      case TipoTextFormField.onlyNumber:
+        return TextInputType.number;
+      case TipoTextFormField.decimals:
+        return TextInputType.numberWithOptions(decimal: true);
+      default:
+        return null;
+    }
+  }
 }
 
-enum TipoTextFormField { text, onlyNumber }
+class DecimalTextInputFormatter extends TextInputFormatter {
+  @override
+  TextEditingValue formatEditUpdate(
+    TextEditingValue oldValue,
+    TextEditingValue newValue,
+  ) {
+    final regExp = RegExp(
+        r'^\d*[,]?\d{0,2}$'); // Permite números, uma vírgula e até duas casas decimais
+
+    // Se o novo valor seguir o padrão, retorna o novo valor
+    if (regExp.hasMatch(newValue.text)) {
+      return newValue;
+    }
+    // Caso contrário, retorna o valor antigo (não permite mudança inválida)
+    return oldValue;
+  }
+}
+
+enum TipoTextFormField { text, onlyNumber, decimals }

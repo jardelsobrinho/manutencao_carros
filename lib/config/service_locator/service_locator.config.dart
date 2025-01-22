@@ -17,6 +17,7 @@ import '../../data/repositories/veiculos/veiculo_repository_impl.dart' as _i204;
 import '../../data/services/api/supabase/veiculo_supabase_services.dart'
     as _i672;
 import '../../data/services/api/veiculo_services.dart' as _i422;
+import '../../ui/consumo_cadastro/consumo_cadastro_viewmodel.dart' as _i853;
 import '../../ui/veiculo_cadastro/veiculo_cadastro_viewmodel.dart' as _i778;
 import '../../ui/veiculo_manutencao/veiculo_manutencao_viewmodel.dart' as _i961;
 import '../../ui/veiculo_pesquisa/veiculo_pesquisa_viewmodel.dart' as _i652;
@@ -34,19 +35,21 @@ extension GetItInjectableX on _i174.GetIt {
       environmentFilter,
     );
     final registerModule = _$RegisterModule();
+    gh.factory<_i853.ConsumoCadastroViewmodel>(
+        () => _i853.ConsumoCadastroViewmodel());
     gh.singleton<_i454.SupabaseClient>(() => registerModule.supabaseClient);
-    gh.factory<_i422.VeiculoServices>(() => _i672.VeiculoSupabaseServices(
+    gh.singleton<_i422.VeiculoServices>(() => _i672.VeiculoSupabaseServices(
         supabaseClient: gh<_i454.SupabaseClient>()));
-    gh.factory<_i191.VeiculoRepository>(() =>
+    gh.singleton<_i191.VeiculoRepository>(() =>
         _i204.VeiculoRepositoryImpl(service: gh<_i422.VeiculoServices>()));
     gh.factory<_i778.VeiculoCadastroViewmodel>(() =>
         _i778.VeiculoCadastroViewmodel(
             repository: gh<_i191.VeiculoRepository>()));
-    gh.factory<_i652.VeiculoPesquisaViewModel>(() =>
-        _i652.VeiculoPesquisaViewModel(
-            repository: gh<_i191.VeiculoRepository>()));
     gh.factory<_i961.VeiculoManutencaoViewmodel>(() =>
         _i961.VeiculoManutencaoViewmodel(
+            repository: gh<_i191.VeiculoRepository>()));
+    gh.factory<_i652.VeiculoPesquisaViewModel>(() =>
+        _i652.VeiculoPesquisaViewModel(
             repository: gh<_i191.VeiculoRepository>()));
     return this;
   }
