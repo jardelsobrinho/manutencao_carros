@@ -4,12 +4,10 @@ import 'package:manutencao_carros/config/commands/command.dart';
 import 'package:manutencao_carros/config/commands/result.dart';
 import 'package:manutencao_carros/data/repositories/consumo_veiculos/consumo_veiculos_repository.dart';
 import 'package:manutencao_carros/domain/consumo_veiculo/consumo_veiculo_model.dart';
-import 'package:manutencao_carros/ui/veiculo_cadastro/veiculo_cadastro_viewmodel.dart';
 
 @injectable
 class ConsumoCadastroViewmodel extends ChangeNotifier {
-
- final ConsumoVeiculosRepository repository;
+  final ConsumoVeiculosRepository repository;
   late final CommandArgs<void, ParamsGravaConsumo> gravar;
   late final CommandArgs<ConsumoVeiculoModel, int> carregaDados;
 
@@ -18,8 +16,8 @@ class ConsumoCadastroViewmodel extends ChangeNotifier {
     carregaDados = CommandArgs(_carregaDados);
   }
 
-  VeiculoModel _veiculo = VeiculoModel.empty();
-  VeiculoModel get veiculo => _veiculo;
+  ConsumoVeiculoModel _veiculo = ConsumoVeiculoModel.empty();
+  ConsumoVeiculoModel get veiculo => _veiculo;
 
   Future<Result<ConsumoVeiculoModel>> _carregaDados(int id) async {
     final result = await repository.carregarPorId(id: id);
@@ -59,8 +57,4 @@ class ParamsGravaConsumo {
       kilometragem: int.parse(kilometragem),
     );
   }
-}
-
-
-
 }
