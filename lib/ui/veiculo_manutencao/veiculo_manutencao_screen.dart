@@ -4,7 +4,7 @@ import 'package:manutencao_carros/config/extensions/buildcontext_extensions.dart
 import 'package:manutencao_carros/config/popup.dart';
 import 'package:manutencao_carros/config/routing/routes.dart';
 import 'package:manutencao_carros/config/widgets/loading_widget.dart';
-import 'package:manutencao_carros/domain/carros/veiculo_model.dart';
+import 'package:manutencao_carros/domain/veiculo/veiculo_model.dart';
 import 'package:manutencao_carros/ui/consumo_cadastro/consumo_cadastro_screen.dart';
 import 'package:manutencao_carros/ui/veiculo_manutencao/veiculo_manutencao_viewmodel.dart';
 import 'package:manutencao_carros/ui/veiculo_manutencao/widgets/veiculo_manutencao_card.dart';

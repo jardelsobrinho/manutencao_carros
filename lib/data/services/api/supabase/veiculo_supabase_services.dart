@@ -1,7 +1,7 @@
 import 'package:injectable/injectable.dart';
 import 'package:manutencao_carros/config/commands/result.dart';
 import 'package:manutencao_carros/data/services/api/veiculo_services.dart';
-import 'package:manutencao_carros/domain/carros/veiculo_model.dart';
+import 'package:manutencao_carros/domain/veiculo/veiculo_model.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 @Singleton(as: VeiculoServices)

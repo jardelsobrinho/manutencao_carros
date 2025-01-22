@@ -3,7 +3,7 @@ import 'package:injectable/injectable.dart';
 import 'package:manutencao_carros/config/commands/command.dart';
 import 'package:manutencao_carros/config/commands/result.dart';
 import 'package:manutencao_carros/data/repositories/veiculos/veiculo_repository.dart';
-import 'package:manutencao_carros/domain/carros/veiculo_model.dart';
+import 'package:manutencao_carros/domain/veiculo/veiculo_model.dart';
 
 @injectable
 class VeiculoPesquisaViewModel extends ChangeNotifier {

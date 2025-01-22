@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:manutencao_carros/config/widgets/card_widget.dart';
 import 'package:manutencao_carros/config/widgets/textfield_widget.dart';
-import 'package:manutencao_carros/domain/carros/veiculo_model.dart';
+import 'package:manutencao_carros/domain/veiculo/veiculo_model.dart';
 
 class VeiculoManutencaoCard extends StatelessWidget {
   final VeiculoModel veiculoModel;
