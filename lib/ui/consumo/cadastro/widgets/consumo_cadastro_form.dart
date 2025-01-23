@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:manutencao_carros/config/valiations/campo_maior_que_zero_decimal_validate.dart';
 import 'package:manutencao_carros/config/widgets/card_widget.dart';
 import 'package:manutencao_carros/config/widgets/textformfield_custom.dart';
-import 'package:manutencao_carros/ui/consumo_cadastro/consumo_cadastro_viewmodel.dart';
+import 'package:manutencao_carros/ui/consumo/cadastro/consumo_cadastro_viewmodel.dart';
 
 class ConsumoCadastroForm extends StatelessWidget {
   final TextEditingController litrosController;

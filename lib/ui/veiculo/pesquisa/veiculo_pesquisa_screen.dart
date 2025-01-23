@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:manutencao_carros/config/commands/command.dart';
-import 'package:manutencao_carros/config/extensions/buildcontext_extensions.dart';
+import 'package:manutencao_carros/config/extensions/buildcontext_extension.dart';
 import 'package:manutencao_carros/config/routing/routes.dart';
 import 'package:manutencao_carros/config/widgets/loading_widget.dart';
-import 'package:manutencao_carros/ui/veiculo_pesquisa/veiculo_pesquisa_viewmodel.dart';
-import 'package:manutencao_carros/ui/veiculo_pesquisa/widgets/veiculo_pesquisa_item.dart';
+import 'package:manutencao_carros/ui/veiculo/pesquisa/veiculo_pesquisa_viewmodel.dart';
+import 'package:manutencao_carros/ui/veiculo/pesquisa/widgets/veiculo_pesquisa_item.dart';
 
 class VeiculoPesquisaScreen extends StatefulWidget {
   final VeiculoPesquisaViewModel viewModel;

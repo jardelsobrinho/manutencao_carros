@@ -24,9 +24,10 @@ import '../../data/services/api/supabase/consumo_veiculo_supabase_services.dart'
 import '../../data/services/api/supabase/veiculo_supabase_services.dart'
     as _i672;
 import '../../data/services/api/veiculo_services.dart' as _i422;
-import '../../ui/veiculo_cadastro/veiculo_cadastro_viewmodel.dart' as _i778;
-import '../../ui/veiculo_manutencao/veiculo_manutencao_viewmodel.dart' as _i961;
-import '../../ui/veiculo_pesquisa/veiculo_pesquisa_viewmodel.dart' as _i652;
+import '../../ui/consumo/cadastro/consumo_cadastro_viewmodel.dart' as _i853;
+import '../../ui/veiculo/cadastro/veiculo_cadastro_viewmodel.dart' as _i778;
+import '../../ui/veiculo/manutencao/veiculo_manutencao_viewmodel.dart' as _i961;
+import '../../ui/veiculo/pesquisa/veiculo_pesquisa_viewmodel.dart' as _i652;
 import '../supabase/supabase_module.dart' as _i784;
 
 extension GetItInjectableX on _i174.GetIt {
@@ -61,6 +62,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i652.VeiculoPesquisaViewModel>(() =>
         _i652.VeiculoPesquisaViewModel(
             repository: gh<_i191.VeiculoRepository>()));
+    gh.factory<_i853.ConsumoCadastroViewmodel>(() =>
+        _i853.ConsumoCadastroViewmodel(
+            repository: gh<_i110.ConsumoVeiculosRepository>()));
     return this;
   }
 }

@@ -7,6 +7,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 @Singleton(as: ConsumoVeiculoServices)
 class ConsumoVeiculoSupabaseServices implements ConsumoVeiculoServices {
   final SupabaseClient supabaseClient;
+  final String _table = "veiculos_consumo";
 
   ConsumoVeiculoSupabaseServices({required this.supabaseClient});
 
@@ -15,7 +16,7 @@ class ConsumoVeiculoSupabaseServices implements ConsumoVeiculoServices {
       {required ConsumoVeiculoModel model}) async {
     try {
       var result = await supabaseClient
-          .from('consumo_veiculos')
+          .from(_table)
           .update(model.toJson())
           .eq('id', model.id!)
           .select();
@@ -28,8 +29,7 @@ class ConsumoVeiculoSupabaseServices implements ConsumoVeiculoServices {
   @override
   Future<Result<ConsumoVeiculoModel>> carregarPorId({required int id}) async {
     try {
-      var result =
-          await supabaseClient.from('consumo_veiculos').select().eq('id', id);
+      var result = await supabaseClient.from(_table).select().eq('id', id);
       var consumos =
           result.map((json) => ConsumoVeiculoModel.fromJson(json)).toList();
 
@@ -46,11 +46,7 @@ class ConsumoVeiculoSupabaseServices implements ConsumoVeiculoServices {
   @override
   Future<Result<void>> excluir({required int id}) async {
     try {
-      await supabaseClient
-          .from('consumo_veiculos')
-          .delete()
-          .eq('id', id)
-          .select();
+      await supabaseClient.from(_table).delete().eq('id', id).select();
       return Result.ok(null);
     } catch (e) {
       return Result.error(e.toString());
@@ -61,10 +57,8 @@ class ConsumoVeiculoSupabaseServices implements ConsumoVeiculoServices {
   Future<Result<ConsumoVeiculoModel>> inserir(
       {required ConsumoVeiculoModel model}) async {
     try {
-      var result = await supabaseClient
-          .from('consumo_veiculos')
-          .insert(model.toJson())
-          .select();
+      var result =
+          await supabaseClient.from(_table).insert(model.toJson()).select();
       return Result.ok(ConsumoVeiculoModel.fromJson(result.first));
     } catch (e) {
       return Result.error(e.toString());
@@ -76,7 +70,7 @@ class ConsumoVeiculoSupabaseServices implements ConsumoVeiculoServices {
       {required int veiculoId}) async {
     try {
       var result = await supabaseClient
-          .from('veiculos')
+          .from(_table)
           .select()
           .eq('veiculo_id', veiculoId);
       var consumos =

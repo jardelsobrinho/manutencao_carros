@@ -23,8 +23,11 @@ mixin _$ConsumoVeiculoModel {
   @JsonKey(includeToJson: false, includeFromJson: true)
   int? get id => throw _privateConstructorUsedError;
   double get litros => throw _privateConstructorUsedError;
+  @JsonKey(name: "preco_total")
   double get precoTotal => throw _privateConstructorUsedError;
   int get kilometragem => throw _privateConstructorUsedError;
+  @JsonKey(name: "veiculo_id")
+  int get veiculoId => throw _privateConstructorUsedError;
 
   /// Serializes this ConsumoVeiculoModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -45,8 +48,9 @@ abstract class $ConsumoVeiculoModelCopyWith<$Res> {
   $Res call(
       {@JsonKey(includeToJson: false, includeFromJson: true) int? id,
       double litros,
-      double precoTotal,
-      int kilometragem});
+      @JsonKey(name: "preco_total") double precoTotal,
+      int kilometragem,
+      @JsonKey(name: "veiculo_id") int veiculoId});
 }
 
 /// @nodoc
@@ -68,6 +72,7 @@ class _$ConsumoVeiculoModelCopyWithImpl<$Res, $Val extends ConsumoVeiculoModel>
     Object? litros = null,
     Object? precoTotal = null,
     Object? kilometragem = null,
+    Object? veiculoId = null,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -86,6 +91,10 @@ class _$ConsumoVeiculoModelCopyWithImpl<$Res, $Val extends ConsumoVeiculoModel>
           ? _value.kilometragem
           : kilometragem // ignore: cast_nullable_to_non_nullable
               as int,
+      veiculoId: null == veiculoId
+          ? _value.veiculoId
+          : veiculoId // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -101,8 +110,9 @@ abstract class _$$ConsumoVeiculoModelImplCopyWith<$Res>
   $Res call(
       {@JsonKey(includeToJson: false, includeFromJson: true) int? id,
       double litros,
-      double precoTotal,
-      int kilometragem});
+      @JsonKey(name: "preco_total") double precoTotal,
+      int kilometragem,
+      @JsonKey(name: "veiculo_id") int veiculoId});
 }
 
 /// @nodoc
@@ -122,6 +132,7 @@ class __$$ConsumoVeiculoModelImplCopyWithImpl<$Res>
     Object? litros = null,
     Object? precoTotal = null,
     Object? kilometragem = null,
+    Object? veiculoId = null,
   }) {
     return _then(_$ConsumoVeiculoModelImpl(
       id: freezed == id
@@ -140,6 +151,10 @@ class __$$ConsumoVeiculoModelImplCopyWithImpl<$Res>
           ? _value.kilometragem
           : kilometragem // ignore: cast_nullable_to_non_nullable
               as int,
+      veiculoId: null == veiculoId
+          ? _value.veiculoId
+          : veiculoId // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -150,8 +165,9 @@ class _$ConsumoVeiculoModelImpl implements _ConsumoVeiculoModel {
   _$ConsumoVeiculoModelImpl(
       {@JsonKey(includeToJson: false, includeFromJson: true) required this.id,
       required this.litros,
-      required this.precoTotal,
-      required this.kilometragem});
+      @JsonKey(name: "preco_total") required this.precoTotal,
+      required this.kilometragem,
+      @JsonKey(name: "veiculo_id") required this.veiculoId});
 
   factory _$ConsumoVeiculoModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$ConsumoVeiculoModelImplFromJson(json);
@@ -162,13 +178,17 @@ class _$ConsumoVeiculoModelImpl implements _ConsumoVeiculoModel {
   @override
   final double litros;
   @override
+  @JsonKey(name: "preco_total")
   final double precoTotal;
   @override
   final int kilometragem;
+  @override
+  @JsonKey(name: "veiculo_id")
+  final int veiculoId;
 
   @override
   String toString() {
-    return 'ConsumoVeiculoModel(id: $id, litros: $litros, precoTotal: $precoTotal, kilometragem: $kilometragem)';
+    return 'ConsumoVeiculoModel(id: $id, litros: $litros, precoTotal: $precoTotal, kilometragem: $kilometragem, veiculoId: $veiculoId)';
   }
 
   @override
@@ -181,13 +201,15 @@ class _$ConsumoVeiculoModelImpl implements _ConsumoVeiculoModel {
             (identical(other.precoTotal, precoTotal) ||
                 other.precoTotal == precoTotal) &&
             (identical(other.kilometragem, kilometragem) ||
-                other.kilometragem == kilometragem));
+                other.kilometragem == kilometragem) &&
+            (identical(other.veiculoId, veiculoId) ||
+                other.veiculoId == veiculoId));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, id, litros, precoTotal, kilometragem);
+      Object.hash(runtimeType, id, litros, precoTotal, kilometragem, veiculoId);
 
   /// Create a copy of ConsumoVeiculoModel
   /// with the given fields replaced by the non-null parameter values.
@@ -208,11 +230,13 @@ class _$ConsumoVeiculoModelImpl implements _ConsumoVeiculoModel {
 
 abstract class _ConsumoVeiculoModel implements ConsumoVeiculoModel {
   factory _ConsumoVeiculoModel(
-      {@JsonKey(includeToJson: false, includeFromJson: true)
-      required final int? id,
-      required final double litros,
-      required final double precoTotal,
-      required final int kilometragem}) = _$ConsumoVeiculoModelImpl;
+          {@JsonKey(includeToJson: false, includeFromJson: true)
+          required final int? id,
+          required final double litros,
+          @JsonKey(name: "preco_total") required final double precoTotal,
+          required final int kilometragem,
+          @JsonKey(name: "veiculo_id") required final int veiculoId}) =
+      _$ConsumoVeiculoModelImpl;
 
   factory _ConsumoVeiculoModel.fromJson(Map<String, dynamic> json) =
       _$ConsumoVeiculoModelImpl.fromJson;
@@ -223,9 +247,13 @@ abstract class _ConsumoVeiculoModel implements ConsumoVeiculoModel {
   @override
   double get litros;
   @override
+  @JsonKey(name: "preco_total")
   double get precoTotal;
   @override
   int get kilometragem;
+  @override
+  @JsonKey(name: "veiculo_id")
+  int get veiculoId;
 
   /// Create a copy of ConsumoVeiculoModel
   /// with the given fields replaced by the non-null parameter values.

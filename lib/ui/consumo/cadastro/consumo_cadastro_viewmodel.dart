@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 import 'package:manutencao_carros/config/commands/command.dart';
 import 'package:manutencao_carros/config/commands/result.dart';
+import 'package:manutencao_carros/config/extensions/string_extension.dart';
 import 'package:manutencao_carros/data/repositories/consumo_veiculos/consumo_veiculos_repository.dart';
 import 'package:manutencao_carros/domain/consumo_veiculo/consumo_veiculo_model.dart';
 
@@ -41,20 +42,23 @@ class ParamsGravaConsumo {
   final String litros;
   final String precoTotal;
   final String kilometragem;
+  final int veiculoId;
 
   ParamsGravaConsumo({
     required this.id,
     required this.litros,
     required this.precoTotal,
     required this.kilometragem,
+    required this.veiculoId,
   });
 
   ConsumoVeiculoModel toConsumoVeiculoModel() {
     return ConsumoVeiculoModel(
       id: id == 0 ? null : id,
-      litros: double.parse(litros),
-      precoTotal: double.parse(precoTotal),
-      kilometragem: int.parse(kilometragem),
+      veiculoId: veiculoId,
+      litros: litros.toDouble(),
+      precoTotal: precoTotal.toDouble(),
+      kilometragem: kilometragem.toInt(),
     );
   }
 }

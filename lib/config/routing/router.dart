@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:manutencao_carros/config/routing/routes.dart';
 import 'package:manutencao_carros/config/service_locator/service_locator.dart';
-import 'package:manutencao_carros/ui/consumo_cadastro/consumo_cadastro_screen.dart';
-import 'package:manutencao_carros/ui/veiculo_cadastro/veiculo_cadastro_screen.dart';
-import 'package:manutencao_carros/ui/veiculo_manutencao/veiculo_manutencao_screen.dart';
-import 'package:manutencao_carros/ui/veiculo_pesquisa/veiculo_pesquisa_screen.dart';
+import 'package:manutencao_carros/ui/consumo/cadastro/consumo_cadastro_screen.dart';
+import 'package:manutencao_carros/ui/veiculo/cadastro/veiculo_cadastro_screen.dart';
+import 'package:manutencao_carros/ui/veiculo/manutencao/veiculo_manutencao_screen.dart';
+import 'package:manutencao_carros/ui/veiculo/pesquisa/veiculo_pesquisa_screen.dart';
 
 MaterialPageRoute? router(RouteSettings settings) {
   if (settings.name == Routes.carroPesquisa) {
